@@ -90,23 +90,29 @@ export default async function Kontakt() {
 
       <Container>
         <div className=" flex flex-col  lg:flex-row items-stretch justify-center xl:gap-[60px] pb-[50px]">
-          <div className="flex flex-col gap-10 bg-[#F5F5F5]   px-3 xl:pr-[15px]  2xl:pr-[24px] py-[26px]">
-            <CardBigText />
-            <Card secondaryText={messages["contact.serviceSecondary"][lang]}>
-              <span className="text-[#ED0E19]">
-                {messages["contact.servicePrimary"][lang]}: +48 22 888 99 98
-                <br /> serwis@proip.pl
-              </span>
-            </Card>
-            <Card secondaryText={messages["contact.promotionsSecondary"][lang]}>
-              {messages["contact.promotionsPrimary"][lang]}: +48 22 888 99 96
-            </Card>
-            <Card
-              secondaryText={messages["contact.bookkeepingSecondary"][lang]}
-            >
-              {messages["contact.bookkeepingPrimary"][lang]}: +48 22 888 99 97
-              <br /> rozliczenia@proip.pl
-            </Card>
+          <div className="relative">
+            <div className="absolute w-[300%] h-full left-[-300%] bg-[#F7F7F7]"></div>
+
+            <div className="flex flex-col xl:w-[530px] relative gap-10 bg-[#F5F5F5] px-0 xl:pr-[15px]  2xl:pr-[24px] py-[26px]">
+              <CardBigText />
+              <Card secondaryText={messages["contact.serviceSecondary"][lang]}>
+                <span className="text-[#ED0E19] ">
+                  {messages["contact.servicePrimary"][lang]}: +48 22 888 99 98
+                  <br /> serwis@proip.pl
+                </span>
+              </Card>
+              <Card
+                secondaryText={messages["contact.promotionsSecondary"][lang]}
+              >
+                {messages["contact.promotionsPrimary"][lang]}: +48 22 888 99 96
+              </Card>
+              <Card
+                secondaryText={messages["contact.bookkeepingSecondary"][lang]}
+              >
+                {messages["contact.bookkeepingPrimary"][lang]}: +48 22 888 99 97
+                <br /> rozliczenia@proip.pl
+              </Card>
+            </div>
           </div>
 
           <div className="w-full px-3 xl:pl-0 ">

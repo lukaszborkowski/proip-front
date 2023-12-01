@@ -10,13 +10,21 @@ async function getData() {
   const nextCookies = cookies();
   const lang = nextCookies.get("lang")?.value || "pl";
 
-  return { messages, lang };
+  // const responses = await Promise.all([
+  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/questions?acf_format=standard`, {
+  //     cache: "no-store",
+  //   }).then((res) => res.json()),
+  // ]);
+
+  // const questions = (responses[0] || []).map((r) => r.acf).reverse();
+
+  return { messages, lang, questions };
 }
 
 export default async function Pytania() {
   const content = await getData();
 
-  const { messages, lang } = content;
+  const { messages, lang, questions } = content;
 
   return (
     <div>
@@ -29,18 +37,31 @@ export default async function Pytania() {
       <Container
         className={"flex flex-col items-stretch justify-start gap-[3px] pb-20"}
       >
-        <Collapsible title={"Najczęściej zadawane pytanie 1"}></Collapsible>
-        <Collapsible
-          isDark={false}
-          title={"Najczęściej zadawane pytanie 2"}
-        ></Collapsible>
-        <Collapsible title={"Najczęściej zadawane pytanie 3"}></Collapsible>
-        <Collapsible
-          isDark={false}
-          title={"Najczęściej zadawane pytanie 4"}
-        ></Collapsible>
-        <Collapsible title={"Najczęściej zadawane pytanie 5"}></Collapsible>
+        {questions?.map((question, index) => {
+          return (
+            <Collapsible
+              title={question[`question-${lang}`]}
+              answer={question[`answer-${lang}`]}
+              isDark={index % 2 === 0}
+            ></Collapsible>
+          );
+        })}
       </Container>
     </div>
   );
 }
+
+const questions = [
+  {
+    "question-pl": "Pytanie nr 1",
+    "question-en": "Question 1",
+    "answer-pl": "Odpowiedź",
+    "answer-en": "Answer",
+  },
+  {
+    "question-pl": "Pytanie 2",
+    "question-en": "Question 2",
+    "answer-pl": "Odpowiedź 2",
+    "answer-en": "Answer 2",
+  },
+];

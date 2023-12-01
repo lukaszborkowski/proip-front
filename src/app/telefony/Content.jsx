@@ -17,7 +17,7 @@ export const Content = ({ content }) => {
   const { mobilePhone, setMobilePhone, phone, setPhone } = usePackage();
 
   return (
-    <div className="pb-10">
+    <div className="pb-10 overflow-y-hidden">
       <PageTitle>
         <Container className={"text-start"}>
           {messages["phone.pageTitle"][lang]}
@@ -30,7 +30,7 @@ export const Content = ({ content }) => {
       </Container>
 
       <Container>
-        <div className={"py-[36px]"}>
+        <div className={"flex justify-center xl:justify-start py-[36px]"}>
           <PrimaryButton>
             {messages["phone.24monthsOfferSecondary"][lang]}{" "}
             <b>{messages["phone.24monthsOfferPrimary"][lang]}</b>
@@ -44,68 +44,73 @@ export const Content = ({ content }) => {
           {messages["phone.landline.titleSecondary"][lang]}
         </SectionTitle>
 
-        <p className="max-w-[700px] text-lg lg:text-[21px] pt-[21px]">
+        <p className="max-w-[700px] text-lg lg:text-[18px] pt-[21px] mb-[42px]">
           {messages["phone.landline.description"][lang]}
         </p>
 
         <div className="flex md:flex-row flex-col-reverse w-full">
           <div className="flex-[2] relative">
-            <div className="md:absolute top-0 bg-[#F7F7F7] left-0 w-full pr-11 py-11">
-              <SectionTitle>
-                {messages["phone.landline.subTitle1"][lang]}{" "}
-                <span className="text-[#ED0E19]">PROIP</span>{" "}
-                {messages["phone.landline.subTitle2"][lang]}
-              </SectionTitle>
+            <div className="md:absolute top-0 bg-[#F7F7F7] left-0 w-full  max-w-[900px]">
+              <div className="relative ">
+                <div className="absolute w-full h-full left-[-100%] bg-[#F7F7F7]"></div>
+                <div className="pr-11 py-11">
+                  <SectionTitle>
+                    {messages["phone.landline.subTitle1"][lang]}{" "}
+                    <span className="text-[#ED0E19]">PROIP</span>{" "}
+                    {messages["phone.landline.subTitle2"][lang]}
+                  </SectionTitle>
 
-              <p>
-                <b>{messages["phone.landline.content1"][lang]}</b>
-                <br />
-                <br />
-                {messages["phone.landline.content2"][lang]}
-                <br />
-                <br />
-                <b>{messages["phone.landline.content3"][lang]}</b>
-                <br />
-                <br />
-                {messages["phone.landline.content4"][lang]}
-                <br />
-                <br />
-                <b>{messages["phone.landline.content5"][lang]}</b>
-                <br />
-                <br />
-                {messages["phone.landline.content6"][lang]}
-                <br />
-                <br />
-                <b>{messages["phone.landline.content7"][lang]}</b>
-                <br />
-                <br />
-                {messages["phone.landline.content8"][lang]}
-                <br />
-                <br />
-                <b>{messages["phone.landline.content9"][lang]}</b>
-                <br />
-                <br />
-                {messages["phone.landline.content10"][lang]}
-                <br />
-                <br />
-                <b>{messages["phone.landline.content11"][lang]}</b>
-                <br />
-                <br />
-              </p>
+                  <p className="pt-[30px]">
+                    <b>{messages["phone.landline.content1"][lang]}</b>
+                    <br />
+                    <br />
+                    {messages["phone.landline.content2"][lang]}
+                    <br />
+                    <br />
+                    <b>{messages["phone.landline.content3"][lang]}</b>
+                    <br />
+                    <br />
+                    {messages["phone.landline.content4"][lang]}
+                    <br />
+                    <br />
+                    <b>{messages["phone.landline.content5"][lang]}</b>
+                    <br />
+                    <br />
+                    {messages["phone.landline.content6"][lang]}
+                    <br />
+                    <br />
+                    <b>{messages["phone.landline.content7"][lang]}</b>
+                    <br />
+                    <br />
+                    {messages["phone.landline.content8"][lang]}
+                    <br />
+                    <br />
+                    <b>{messages["phone.landline.content9"][lang]}</b>
+                    <br />
+                    <br />
+                    {messages["phone.landline.content10"][lang]}
+                    <br />
+                    <br />
+                    <b>{messages["phone.landline.content11"][lang]}</b>
+                    <br />
+                    <br />
+                  </p>
 
-              <div className="block md:hidden">
-                <Image
-                  src="/telefony.png"
-                  alt="telefony"
-                  width={718}
-                  height={634}
-                  className="w-full object-cover"
-                />
+                  <div className="block md:hidden">
+                    <Image
+                      src="/telefony.png"
+                      alt="telefony"
+                      width={718}
+                      height={634}
+                      className="w-full object-cover"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div className="flex-1 pb-[50px]">
-            <div className="lg:pl-[100px] lg:mt-[-100px]">
+            <div className="lg:pl-[70px] lg:pr-[50px] lg:mt-[-100px]">
               <PriceCard
                 content={content}
                 isActive={phone}
@@ -136,38 +141,43 @@ export const Content = ({ content }) => {
           {messages["phone.mobile.titleSecondary"][lang]}
         </SectionTitle>
 
-        <p className="max-w-[700px] text-lg lg:text-[21px] pt-[21px]">
+        <p className="max-w-[700px] text-lg lg:text-[18px] pt-[21px] pb-[21px]">
           {messages["phone.mobile.description"][lang]}
         </p>
 
         <div className="flex md:flex-row flex-col-reverse w-full">
           <div className="flex-[2] relative">
-            <div className="md:absolute top-0 bg-[#F7F7F7] z-[-1] left-0 w-full md:pr-11 pt-11 md:pb-[200px]">
-              <SectionTitle>
-                {messages["phone.mobile.subtitle"][lang]}
-              </SectionTitle>
+            <div className="md:absolute top-0 bg-[#F7F7F7] z-[-1] left-0 w-full  md:pb-[100px]">
+              <div className="relative ">
+                <div className="absolute w-full h-[150%] left-[-100%] bg-[#F7F7F7]"></div>
+                <div className="pr-11 pb-11 pt-5">
+                  <SectionTitle>
+                    {messages["phone.mobile.subtitle"][lang]}
+                  </SectionTitle>
 
-              <p>
-                <b>{messages["phone.mobile.content1"][lang]}</b>
-                <br />
-                <br />
-                {messages["phone.mobile.content2"][lang]}
-                <br />
-                <br />
-                <b>{messages["phone.mobile.content3"][lang]} </b>
-                <br />
-                <br />
-                {messages["phone.mobile.content3"][lang]}
-              </p>
+                  <p className="mt-10">
+                    <b>{messages["phone.mobile.content1"][lang]}</b>
+                    <br />
+                    <br />
+                    {messages["phone.mobile.content2"][lang]}
+                    <br />
+                    <br />
+                    <b>{messages["phone.mobile.content3"][lang]} </b>
+                    <br />
+                    <br />
+                    {messages["phone.mobile.content3"][lang]}
+                  </p>
 
-              <div className="block md:hidden">
-                <Image
-                  src="/telefony2.png"
-                  alt="telefony"
-                  width={1400}
-                  height={634}
-                  className="w-full object-cover"
-                />
+                  <div className="block md:hidden">
+                    <Image
+                      src="/telefony2.png"
+                      alt="telefony"
+                      width={1400}
+                      height={634}
+                      className="w-full object-cover"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

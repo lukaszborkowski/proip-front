@@ -94,7 +94,7 @@ async function getData() {
 
 const RootLayout = async ({ children }) => {
   const content = await getData();
-  console.log(content);
+
   return (
     <html lang="en">
       <body className={sourceSans.className}>
