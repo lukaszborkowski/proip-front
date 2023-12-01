@@ -40,6 +40,7 @@ export default async function Pytania() {
         {questions?.map((question, index) => {
           return (
             <Collapsible
+              key={index}
               title={question[`question-${lang}`]}
               answer={question[`answer-${lang}`]}
               isDark={index % 2 === 0}
