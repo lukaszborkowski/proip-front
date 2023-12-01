@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.white-gradient {
+    background: transparent linear-gradient(106deg, #ffffff 0%, #ffffff78 52%, #ffffff00 100%) 0% 0%
+        no-repeat padding-box;
+}
+
+.dots li {
+    opacity: 0.5;
+}
+
+.dots li.slick-active {
+    opacity: 1;
+}
