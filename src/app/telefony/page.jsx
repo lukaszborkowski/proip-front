@@ -4,7 +4,7 @@ import React from "react";
 import { messages } from "../../lib/messages";
 import { Content } from "./Content";
 
-export async function getData() {
+async function getData() {
   const nextCookies = cookies();
   const lang = nextCookies.get("lang")?.value || "pl";
 
