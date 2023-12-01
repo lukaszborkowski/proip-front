@@ -5,12 +5,11 @@ import React from "react";
 export default function ChannelsCard({ lang, pakiet, isActive, onSelect }) {
   return (
     <div
-      
       className={`${isActive ? "bg-[#009dff2a]" : ""}  w-full border ${
         isActive ? "border-[#009CFF]" : "border-[#ED0E19]"
       } py-[27px] px-[30px] flex xl:flex-row flex-col items-center rounded-[7px] gap-[60px]`}
     >
-      <div className="flex flex-col items-center justify-center w-[300px]">
+      <div className="flex flex-col items-center justify-center w-[330px]">
         <h3 className="text-lg lg:text-[22px] font-bold text-[#3B3A40] mb-4">
           {pakiet[`title-${lang}`]}
         </h3>
@@ -60,8 +59,10 @@ export default function ChannelsCard({ lang, pakiet, isActive, onSelect }) {
           />
         </div>
 
-        <ChooseButton className={"w-[200px]"} isActive={true}
-        onClick={onSelect}
+        <ChooseButton
+          className={"w-[200px]"}
+          isActive={true}
+          onClick={onSelect}
         >
           {pakiet[`button-text-${lang}`]}
         </ChooseButton>
