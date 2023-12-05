@@ -213,76 +213,49 @@ export const messages = {
     },
 
     "business.mainTitle": {
-        "pl": "Dla biznesu",
-        "en": "For business"
+        "pl": "Biznes",
+        "en": "Business"
     },
-    "business.fastConnectionPrimary": {
-        "pl": "Super szybkie ",
-        "en": "Super fast "
+    "business.symmetricalConnection": {
+        "pl": "Łącza symetryczne",
+        "en": "Symmetrical connections"
     },
-    "business.fastConnectionSecondary": {
-        "pl": "łącze",
-        "en": "connection"
+    "business.symmetricalConnectionDesc": {
+        "pl": "W pełni skalowalny i szeroki zakres przepustowości od 1 Gbit’s do 10 Gbit’s, zapewniający wygodne zwiększenie pasma wraz z rozwojem Twojej firmy. Zwiększenie parametrów odbywa się w zaledwie chwilę aby odpowiedzieć Twoim potrzebom biznesowym. Warunki SLA i gwarancje przepustowości to u nas standard.",
+        "en": "Fully scalable and wide range of bandwidth from 1 Gbit’s to 10 Gbit’s, providing convenient bandwidth increase with the development of your company. Increasing the parameters takes place in just a moment to meet your business needs. SLA conditions and bandwidth guarantees are standard with us."
     },
-    "business.ourOffer": {
-        "pl": "Nasza oferta jest doskonałym rozwiązaniem dla biznesu nie tylko dzięki bezkonkurencyjnej cenie, ale również dzięki osiąganej prędkości Internetu.",
-        "en": "Our offer is an excellent solution for business not only thanks to the unbeatable price, but also thanks to the achieved Internet speed."
+    "business.asymmetricalConnection": {
+        "pl": "Łącza asymetryczne",
+        "en": "Asymmetrical connections"
     },
+    "business.asymmetricalConnectionDesc": {
+        "pl": "Szybkie, stałe łącze Internetowe bez ograniczeń i limitów danych. Dzięki elastycznej ofercie dopasujemy parametry pobierania i wysyłania danych do potrzeb Twojej firmy.",
+        "en": "Fast, constant Internet connection without restrictions and data limits. Thanks to the flexible offer, we will adjust the parameters of downloading and sending data to the needs of your company."
+    },
+    "business.vpln": {
+        "pl": "VPLN (czy VPLS?)",
+        "en": "VPLN (or VPLS?)"
+    },
+    "business.vplnDesc": {
+        "pl": "Bezpieczna i prywatna sieć między oddziałami Twojej firmy, gwarantuje dostęp do zasobów organizacji i zapewni pracownikom efektywne korzystanie z centralnych aplikacji.",
+        "en": "A secure and private network between your company's branches guarantees access to the organization's resources and will provide employees with efficient use of central applications."
+    },
+    "business.colocation": {
+        "pl": "Kolokacja w ProIP",
+        "en": "Colocation in ProIP"
+    },
+    "business.colocationDesc": {
+        "pl": "Aby zwiększyć bezpieczeństwo, wydajność systemów informatycznych, optymalizować koszty IT skorzystaj  z usługi kolokacji serwerów do Data Center ProIP. ",
+        "en": "To increase security, the performance of IT systems, optimize IT costs, use the server colocation service to the ProIP Data Center."
+    },
+
     "business.inYourFirmTitlePrimary": {
-        "pl": "Światłowód",
-        "en": "Fiber optic"
-    },
-    "business.inYourFirmTitleSecondary": {
-        "pl": "w Twojej firmie",
-        "en": "in your company"
-    },
-    "business.inYourFirmContentBold": {
-        "pl": "Internet światłowodowy daje możliwość uzyskania dowolnej przepustowości. Wszystko zależy od potrzeb biznesowych klienta. To Twój światłowód, masz więc pewność, że firma będzie stale podłączona do sieci. A gdy potrzeby firmy wzrosną, dostosujemy odpowiednio przepustowość łącza, zachowując najwyższą jakość.",
-        "en": "Fiber optic internet gives you the opportunity to obtain any bandwidth. Everything depends on the customer's business needs. It's your fiber optic, so you can be sure that the company will be constantly connected to the network. And when the company's needs grow, we will adjust the bandwidth accordingly, maintaining the highest quality."
+        "pl": "Telefonia IP",
+        "en": "IP telephony"
     },
     "business.inYourFirmContent": {
-        "pl": "Stały, symetryczny lub asymetryczny dostęp do internetu monitoring sieci - wsparcie techniczne 24/7/365 możliwość zwiększania pasma w trakcie trwania umowy gwarancja świadczonej usługi - potwierdzoną umową SLA stałe parametry usługi - symetryczne i asymetryczne łącza światłowodowe stałe, publiczne adresy IP - podsieć zgodną z potrzebami klienta protokół routingu BGP - dzięki któremu Klienci posiadający więcej niż jedno łącze dostępu do internetu mogą zarządzać i tworzyć zaawansowane scenariusze.",
-        "en": "Permanent, symmetrical or asymmetrical access to the Internet network monitoring - technical support 24/7/365 the possibility of increasing the bandwidth during the contract guarantee of the service provided - confirmed by the SLA agreement constant service parameters - symmetrical and asymmetrical fiber optic links constant, public IP addresses - a subnet tailored to the client's needs BGP routing protocol - thanks to which Customers with more than one Internet access link can manage and create advanced scenarios."
-    },
-    "business.voiceServices.title": {
-        "pl": "Usługi głosowe",
-        "en": "Voice services"
-    },
-    "business.voiceServices.telephony": {
-        "pl": "Telefonia analogowa",
-        "en": "Analog telephony"
-    },
-    "business.voiceServices.internet": {
-        "pl": "Internet",
-        "en": "Internet"
-    },
-    "business.voiceServices.telephonyISDN": {
-        "pl": "Telefonia cyfrowa ISDN",
-        "en": "ISDN digital telephony"
-    },
-    "business.voiceServices.asymmehricalConnection": {
-        "pl": "Łącze asymetryczne",
-        "en": "Asymmetrical connection"
-    },
-    "business.voiceServices.toolsAndSystems": {
-        "pl": "Urządzenia i systemy VDIP",
-        "en": "VDIP devices and systems"
-    },
-    "business.voiceServices.symmetricalConnection": {
-        "pl": "Łącze symetryczne do n x 10 Gbit/s",
-        "en": "Symmetrical connection up to n x 10 Gbit/s"
-    },
-    "business.voiceServices.PABX": {
-        "pl": "Centrale telefonicznie PABX",
-        "en": "PABX telephone exchanges"
-    },
-    "business.voiceServices.publicIPs": {
-        "pl": "Stałe publiczne adresy IP",
-        "en": "Permanent public IP addresses"
-    },
-    "business.voiceServices.routingBGP": {
-        "pl": "Routing BGP",
-        "en": "Routing BGP"
+        "pl": "Połączenia głosowe za pośrednictwem dostępu do Internetu charakteryzuje niezwykła jakość połączeń i gwarancji zadowolenia rozmówcy. Pomożemy Twojemu biznesowi w oparciu o zaawansowane centrale telefoniczne, mogące obsłużyć od jednej słuchawki po duże Call Center.",
+        "en": "Voice calls via Internet access are characterized by exceptional call quality and customer satisfaction guarantee. We will help your business based on advanced telephone exchanges, which can handle from one handset to large Call Centers."
     },
 
     "business.network.title": {
