@@ -14,10 +14,10 @@ export const Calculator = ({ content = {} }) => {
 
   const tvPrice = tv?.price || 0;
 
-  const isRabat = !!(internet && tv) && tv?.id != 34;
+  const isRabat = !!(internet && tv);
   const rabatPrice = isBlock
-    ? internet?.["apartment-discount"]
-    : internet?.["singlehouse-discount"];
+    ? internet?.[`apartment-discount-${tv?.id}`]
+    : internet?.[`singlehouse-discount-${tv?.id}`];
 
   const phonePrice = Number(phone?.price ?? 0);
   const mobilePhonePrice = Number(mobilePhone?.price ?? 0);

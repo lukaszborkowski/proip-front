@@ -7,7 +7,7 @@ import { usePackage } from "../../..//components/usePackage";
 
 export default function Channels({ content = {} }) {
   const { lang, messages, moreTv: moreTvs } = content;
-  const { moreTv, setMoreTv } = usePackage();
+  const { moreTv, setMoreTv, tv } = usePackage();
 
   return (
     <Container>
@@ -24,6 +24,7 @@ export default function Channels({ content = {} }) {
               pakiet={pakiet}
               isActive={pakiet?.id === moreTv?.id}
               onSelect={() => {
+                if (!tv) return;
                 pakiet?.id === moreTv?.id ? setMoreTv(null) : setMoreTv(pakiet);
               }}
             />

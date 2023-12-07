@@ -37,7 +37,7 @@ export default function Internet({ content = {} }) {
               <b>{messages["home.internet.housesBold"][lang]}</b>
             </PrimaryButton>
           </div>
-          <div className="grid grid-cols-2  items-center justify-center gap-6">
+          {/* <div className="grid grid-cols-2  items-center justify-center gap-6">
             <PrimaryButton isActive={true} className={"h-full flex-1 w-full "}>
               {messages["home.internet.24months"][lang]}{" "}
               <b>{messages["home.internet.24monthsBold"][lang]}</b>
@@ -46,7 +46,7 @@ export default function Internet({ content = {} }) {
               {messages["home.internet.lifetime"][lang]}{" "}
               <b>{messages["home.internet.lifetimeBold"][lang]}</b>
             </PrimaryButton>
-          </div>
+          </div> */}
         </div>
 
         {/* <div className="flex flex-col xl:flex-row justify-center items-center gap-10 mt-[50px]"> */}

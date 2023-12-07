@@ -8,7 +8,7 @@ import { usePackage } from "../../../components/usePackage";
 
 export default function Television({ content }) {
   const { tvItems = [], messages, lang } = content;
-  const { tv, setTv } = usePackage();
+  const { tv, setTv, setMoreTv } = usePackage();
 
   return (
     <>
@@ -22,7 +22,7 @@ export default function Television({ content }) {
               <SectionTitle className={"pt-[50px]"}>
                 {messages["home.television.title"][lang]}
               </SectionTitle>
-              <div className="flex items-center pt-4 gap-5 pb-[50px] md:justify-start justify-center">
+              {/* <div className="flex items-center pt-4 gap-5 pb-[50px] md:justify-start justify-center">
                 <PrimaryButton isActive={true}>
                   {messages["home.television.24months"][lang]}{" "}
                   <b>{messages["home.television.24monthsBold"][lang]}</b>
@@ -31,7 +31,7 @@ export default function Television({ content }) {
                   {messages["home.television.tvInternet"][lang]}{" "}
                   <b>{messages["home.television.tvInternetBold"][lang]}</b>
                 </PrimaryButton>
-              </div>
+              </div> */}
 
               <h3 className="text-[22px] md:text-[30px] pt-4 text-center md:text-start xl:pt-10 xl:text-[45px] 2xl:text-[59px] text-[#009CFF] max-w-[630px] 2xl:leading-[71px] pb-5 xl:pb-[150px]">
                 {messages["home.television.mainText"][lang]}
@@ -45,7 +45,12 @@ export default function Television({ content }) {
                     content={content}
                     isActive={inter?.id === tv?.id}
                     onSelect={() => {
-                      inter?.id === tv?.id ? setTv(null) : setTv(inter);
+                      if (inter?.id === tv?.id) {
+                        setTv(null);
+                        setMoreTv(null);
+                        return;
+                      }
+                      setTv(inter);
                     }}
                   />
                 ))}
