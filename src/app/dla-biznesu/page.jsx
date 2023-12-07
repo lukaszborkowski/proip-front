@@ -43,7 +43,7 @@ export default async function DlaBiznesu() {
 
             <Container>
                 <div className="flex flex-col lg:flex-row w-full items-stretch lg:gap-[70px] bg-[#F7F7F7]">
-                    <Image src='/call.png' alt="asd" width={700} height={355} className='flex-1 w-full max-h-[355px]' />
+                    <Image src='/call 1.png' alt="asd" width={700} height={355} className='flex-1 w-full max-h-[355px]' />
                     <div className="text-center lg:text-start flex-1 flex items-stretch lg:items-start justify-center flex-col relative">
                         <div className='hidden lg:block absolute top-0 right-[-100%] w-full h-full bg-[#F7F7F7] z-[-1]'></div>
                         <SectionTitle><span className='text-[#ED0E19]'>{messages["business.asymmetricalConnection"][lang]}</span></SectionTitle>
@@ -56,7 +56,7 @@ export default async function DlaBiznesu() {
 
             <Container>
                 <div className="flex flex-col lg:flex-row-reverse w-full items-stretch">
-                    <Image src='/business-woman1.png' alt="asd" width={700} height={700} className='flex-1 w-full max-h-[700px]' />
+                    <Image src='/business-woman1 1.png' alt="asd" width={700} height={700} className='flex-1 w-full max-h-[700px]' />
                     <div className="text-center lg:text-start flex-1 flex flex-col items-stretch">
                         <div className='flex-1 py-[33px]'>
                             <SectionTitle><span className='text-[#ED0E19]'>{messages["business.vpln"][lang]}</span></SectionTitle>
