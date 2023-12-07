@@ -687,4 +687,68 @@ export const messages = {
         "pl": "Nielimitowane SMSY",
         "en": "Unlimited SMS"
     },
+
+
+    "calculator.month": {
+        "pl": "miesiąc",
+        "en": "month"
+    },
+    "calculator.tv": {
+        "pl": "Telewizja",
+        "en": "TV"
+    },
+    "calculator.moreChannels": {
+        "pl": "Wiecej kanałów",
+        "en": "More channels"
+    },
+    "calculator.landline": {
+        "pl": "Telefon stacjonarny",
+        "en": "Landline phone"
+    },
+    "calculator.mobile": {
+        "pl": "Telefon komórkowy",
+        "en": "Mobile phone"
+    },
+    "calculator.discount": {
+        "pl": "Rabat",
+        "en": "Discount"
+    },
+    "calculator.total": {
+        "pl": "Łącznie",
+        "en": "Total"
+    },
+    "calculator.send": {
+        "pl": "Wyślij zapytanie",
+        "en": "Send inquiry"
+    },
+    "calculator.close": {
+        "pl": "Zamknij",
+        "en": "Close"
+    },
+    "calculator.order": {
+        "pl": "Zamówienie",
+        "en": "Order"
+    },
+    "calculator.summary": {
+        "pl": "Pełne podsumowanie",
+        "en": "Full summary"
+    },
+
+
+    "errors.name": {
+        "pl": "Imię jest wymagane",
+        "en": "Name is required"
+    },
+    "errors.email": {
+        "pl": "Email jest wymagany",
+        "en": "Email is required"
+    },
+    "errors.phone": {
+        "pl": "Numer telefonu jest wymagany",
+        "en": "Phone is required"
+    },
+    "errors.content": {
+        "pl": "Treść jest wymagana",
+        "en": "Content is required"
+    },
 }
