@@ -40,15 +40,7 @@ export default function Opinions({ content = {} }) {
                 </div>
               ))}
 
-              {/* <div>
-                <Opinion />
-              </div>
-              <div>
-                <Opinion />
-              </div>
-              <div>
-                <Opinion />
-              </div> */}
+           
             </Slider>
           </div>
 

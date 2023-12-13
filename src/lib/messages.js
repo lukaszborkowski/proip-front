@@ -733,7 +733,14 @@ export const messages = {
         "pl": "Pełne podsumowanie",
         "en": "Full summary"
     },
-
+    "calculator.form.phone": {
+        "pl": "Telefon",
+        "en": "Phone"
+    },
+    "calculator.form.content": {
+        "pl": "Treść",
+        "en": "Content"
+    },
 
     "errors.name": {
         "pl": "Imię jest wymagane",

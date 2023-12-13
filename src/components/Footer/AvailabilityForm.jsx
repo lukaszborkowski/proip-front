@@ -1,42 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import ChooseButton from "../Buttons/ChooseButton";
 import Marker from "../Icons/Marker";
 import axios from "axios";
+import Autocomplete from "./Autocomplete";
 
-export default function AvailabilityForm({ content = {} }) {
+export default function AvailabilityForm({ content = {}, onSubmit }) {
   const { messages, lang } = content;
+  const [values, setValues] = useState({});
+
   return (
     // <form className="w-full">
     <>
-      <input
+      {/* <input
         type="text"
         className="bg-transparent w-full py-4 border-b border-[#707070] placeholder:text-[#376369] text-[19px]"
         placeholder={messages["footer.availability.townPlaceholder"][lang]}
-      />
+      /> */}
 
-      <div className="grid grid-cols-1 xl:grid-cols-4 gap-5 pt-5 pb-[50px]">
-        <input
-          type="text"
-          className=" bg-transparent xl:col-span-2 w-full py-4 border-b border-[#707070] placeholder:text-[#376369] text-[19px]"
-          placeholder={messages["footer.availability.streetPlaceholder"][lang]}
-        />
-        <input
-          type="text"
-          className="bg-transparent w-full py-4 border-b border-[#707070] placeholder:text-[#376369] text-[19px]"
-          placeholder={messages["footer.availability.houseNrPlaceholder"][lang]}
-        />
-        <input
-          type="text"
-          className="bg-transparent w-full py-4 border-b border-[#707070] placeholder:text-[#376369] text-[19px]"
-          placeholder={messages["footer.availability.apartNrPlaceholder"][lang]}
+      <div className="py-4">
+        <label className="text-[#376369] text-[19px]">Miasto</label>
+        <Autocomplete
+          value={values.city}
+          onChange={(val) => {
+            console.log(val);
+            setValues((prev) => ({ ...prev, city: val }));
+          }}
+          resourceName="cities"
         />
       </div>
 
+      <div className="py-4 flex space-x-2">
+        <div className="flex-1">
+          <label className="text-[#376369] text-[19px]">Ulica</label>
+          <Autocomplete
+            value={values.street}
+            onChange={(val) => {
+              console.log(val);
+              setValues((prev) => ({ ...prev, street: val }));
+            }}
+            isDisabled={!!!values?.city}
+            resourceName="streets"
+            city={values?.city?.id}
+          />
+        </div>
+        <div className="w-[160px] lg:w-[240px]">
+          <label className="text-[#376369] text-[19px]">Numer budynku</label>
+          <input
+            disabled={!!!values?.city}
+            className="w-full border mt-[4px] py-[16px] pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 rounded-lg bg-white text-left shadow-md focus:outline-none "
+            // onChange={(event) => setQuery(event.target.value)}
+          />
+        </div>
+      </div>
+
       <ChooseButton
-        className={"w-full px-0"}
+        className={"w-full px-0 mt-[20px]"}
         isActive={true}
         onClick={() => {
-          getAvailabilityCoordinates();
+          onSubmit(values);
         }}
       >
         {messages["footer.availability.checkAvailabilityButton"][lang]}
@@ -51,42 +72,3 @@ export default function AvailabilityForm({ content = {} }) {
     // </form>
   );
 }
-
-const getAvailabilityCoordinates = async () => {
-  console.log("APII");
-  axios.get("https://redirect.webdevenv.pl/https://internet.gov.pl/api/voivodeships", {
-    headers: {
-      "Accept": "application/x-www-form-urlencoded",
-      "Content-Type": "application/x-www-form-urlencoded",
-      "Access-Control-Allow-Origin": "*"
-      // "Authorization": "Token 0c52e12c6a7d40678c67e37c63ef232e05f01401",
-    },
-  });
-  // axios.get("https://internet.gov.pl/api/", {
-  //   // withCredentials: false,
-  //   headers: {
-  //     Accept: "application/json",
-  //     "Content-Type": "application/json",
-  //     Authorization: "Token 0c52e12c6a7d40678c67e37c63ef232e05f01401",
-  //     "Access-Control-Allow-Origin": "*",
-  //   },
-  // });
-
-  // axios
-  //   .head("https://internet.gov.pl/api/address_points?municipality=Andrzejewo", {
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: "Token 0c52e12c6a7d40678c67e37c63ef232e05f01401", // Uwierzytelnienie przy użyciu tokenu
-  //     },
-  //   })
-  //   .then((response) => {
-  //     console.log(response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Błąd:", error);
-  //   });
-};
-
-// curl https://redirect.webdevenv.pl/https://internet.gov.pl/api/voivodeships \
-  

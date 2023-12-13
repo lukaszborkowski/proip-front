@@ -164,7 +164,7 @@ export const Calculator = ({ content = {} }) => {
                       onChange={(e) => setData({ ...data, phone: e.target.value })}
                       required={true}
                       className="p-2 bg-transparent xl:col-span-2 w-full border-b border-[#707070] placeholder:text-[#376369] text-[19px]"
-                      placeholder={"Phone"}
+                      placeholder={messages["calculator.form.phone"][lang]}
                     />
                     {errors.phone && <div className="text-red-500">{errors.phone}</div>}
                     <textarea
@@ -172,7 +172,7 @@ export const Calculator = ({ content = {} }) => {
                       onChange={(e) => setData({ ...data, content: e.target.value })}
                       required={true}
                       cols="30" rows="3"
-                      placeholder={"Content"}
+                      placeholder={messages["calculator.form.content"][lang]}
                       className='p-2 bg-transparent xl:col-span-2 w-full border-b border-[#707070] placeholder:text-[#376369] text-[19px]'>
                     </textarea>
                     {errors.content && <div className="text-red-500">{errors.content}</div>}
@@ -206,7 +206,7 @@ export const Calculator = ({ content = {} }) => {
                 <div>{messages["calculator.order"][lang]}:</div>
                 <div className="flex items-center">
                   <div className="mr-6">
-                    <div>{messages["calculator.total"][lang]}: {total} zł / {messages["calculator.month"][lang]}:</div>
+                    <div>{messages["calculator.total"][lang]}: {total} zł / {messages["calculator.month"][lang]}</div>
                     {isRabat && <div>{messages["calculator.discount"][lang]}: {rabatPrice} zł / {messages["calculator.month"][lang]}</div>}
                   </div>
                   <button

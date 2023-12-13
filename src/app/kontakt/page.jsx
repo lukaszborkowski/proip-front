@@ -54,10 +54,10 @@ async function getData() {
   const lang = nextCookies.get("lang")?.value || "pl";
 
   // const responses = await Promise.all([
-  //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/navbar-elements?acf_format=standard`, {
+  //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/navbar-elements?acf_format=standard`, {
   //         cache: 'no-store',
   //     }).then(res => res.json()),
-  //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/hero-items?acf_format=standard`, {
+  //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/hero-items?acf_format=standard`, {
   //         cache: 'no-store',
   //     }).then(res => res.json())
 
@@ -96,7 +96,7 @@ export default async function Kontakt() {
             <div className="flex flex-col xl:w-[530px] relative gap-10 bg-[#F5F5F5] px-0 xl:pr-[15px]  2xl:pr-[24px] py-[26px]">
               <CardBigText />
               <Card secondaryText={messages["contact.serviceSecondary"][lang]}>
-                <span className="text-[#ED0E19] ">
+                <span className="text-[#315E64] ">
                   {messages["contact.servicePrimary"][lang]}: +48 22 888 99 98
                   <br /> serwis@proip.pl
                 </span>
