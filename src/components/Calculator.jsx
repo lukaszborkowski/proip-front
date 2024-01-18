@@ -9,38 +9,45 @@ export const Calculator = ({ content = {} }) => {
 
   const { internet, tv, moreTv, isBlock, phone, mobilePhone } = usePackage();
 
-  const [data, setData] = useState({ phone: "", email: "", content: "" })
-  const [errors, setErrors] = useState({ phone: null, email: null, content: null })
+  const [data, setData] = useState({ phone: "", email: "", content: "" });
+  const [errors, setErrors] = useState({
+    phone: null,
+    email: null,
+    content: null,
+  });
 
   const submitHandler = (e) => {
-    e.preventDefault()
-    setErrors({ phone: null, email: null, content: null })
+    e.preventDefault();
+    setErrors({ phone: null, email: null, content: null });
 
     if (!data.email) {
-      setErrors({ ...errors, email: messages["errors.email"][lang] })
-      return
+      setErrors({ ...errors, email: messages["errors.email"][lang] });
+      return;
     }
     if (!data.phone) {
-      setErrors({ ...errors, phone: messages["errors.phone"][lang] })
-      return
+      setErrors({ ...errors, phone: messages["errors.phone"][lang] });
+      return;
     }
     if (!data.content) {
-      setErrors({ ...errors, content: messages["errors.content"][lang] })
-      return
+      setErrors({ ...errors, content: messages["errors.content"][lang] });
+      return;
     }
 
-    console.log(data)
+    console.log(data);
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact-forms`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ data })
+      body: JSON.stringify({ data }),
     })
-      .then(res => res.ok && setIsModalOpen(false))
-      .catch(error => console.log(error))
-  }
+      .then((res) => res.ok && setIsModalOpen(false))
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setIsModalOpen(false);
+      });
+  };
 
   const internetPrice =
     (isBlock ? internet?.[`price_block`] : internet?.[`price`]) || 0;
@@ -80,7 +87,8 @@ export const Calculator = ({ content = {} }) => {
                         Internet:
                       </h3>
                       <h3 className="text-lg leading-6 font-medium text-gray-900">
-                        {internetPrice} zł / {messages["calculator.month"][lang]}
+                        {internetPrice} zł /{" "}
+                        {messages["calculator.month"][lang]}
                       </h3>
                     </div>
                   )}
@@ -102,7 +110,8 @@ export const Calculator = ({ content = {} }) => {
                         {messages["calculator.moreChannels"][lang]}:
                       </h3>
                       <h3 className="text-lg leading-6 font-medium text-gray-900">
-                        {Number(moreTv?.price || 0)} zł / {messages["calculator.month"][lang]}
+                        {Number(moreTv?.price || 0)} zł /{" "}
+                        {messages["calculator.month"][lang]}
                       </h3>
                     </div>
                   )}
@@ -124,7 +133,8 @@ export const Calculator = ({ content = {} }) => {
                         {messages["calculator.mobile"][lang]}:
                       </h3>
                       <h3 className="text-lg leading-6 font-medium text-gray-900">
-                        {mobilePhonePrice} zł / {messages["calculator.month"][lang]}
+                        {mobilePhonePrice} zł /{" "}
+                        {messages["calculator.month"][lang]}
                       </h3>
                     </div>
                   )}
@@ -152,30 +162,43 @@ export const Calculator = ({ content = {} }) => {
                     <input
                       type="email"
                       value={data.email}
-                      onChange={(e) => setData({ ...data, email: e.target.value })}
+                      onChange={(e) =>
+                        setData({ ...data, email: e.target.value })
+                      }
                       required={true}
                       className="p-2 bg-transparent xl:col-span-2 w-full border-b border-[#707070] placeholder:text-[#376369] text-[19px]"
                       placeholder={"E-mail"}
                     />
-                    {errors.email && <div className="text-red-500">{errors.email}</div>}
+                    {errors.email && (
+                      <div className="text-red-500">{errors.email}</div>
+                    )}
                     <input
                       type="tel"
                       value={data.phone}
-                      onChange={(e) => setData({ ...data, phone: e.target.value })}
+                      onChange={(e) =>
+                        setData({ ...data, phone: e.target.value })
+                      }
                       required={true}
                       className="p-2 bg-transparent xl:col-span-2 w-full border-b border-[#707070] placeholder:text-[#376369] text-[19px]"
                       placeholder={messages["calculator.form.phone"][lang]}
                     />
-                    {errors.phone && <div className="text-red-500">{errors.phone}</div>}
+                    {errors.phone && (
+                      <div className="text-red-500">{errors.phone}</div>
+                    )}
                     <textarea
                       value={data.content}
-                      onChange={(e) => setData({ ...data, content: e.target.value })}
+                      onChange={(e) =>
+                        setData({ ...data, content: e.target.value })
+                      }
                       required={true}
-                      cols="30" rows="3"
+                      cols="30"
+                      rows="3"
                       placeholder={messages["calculator.form.content"][lang]}
-                      className='p-2 bg-transparent xl:col-span-2 w-full border-b border-[#707070] placeholder:text-[#376369] text-[19px]'>
-                    </textarea>
-                    {errors.content && <div className="text-red-500">{errors.content}</div>}
+                      className="p-2 bg-transparent xl:col-span-2 w-full border-b border-[#707070] placeholder:text-[#376369] text-[19px]"
+                    ></textarea>
+                    {errors.content && (
+                      <div className="text-red-500">{errors.content}</div>
+                    )}
                   </div>
 
                   <div className="items-center px-4 py-3">
@@ -196,30 +219,36 @@ export const Calculator = ({ content = {} }) => {
                 </form>
               </div>
             </div>
-          </div >
+          </div>
         )}
 
-        {
-          true && (
-            <div className={`flex justify-between`}>
-              <div className="fixed flex justify-between items-center bottom-0 left-0 w-[100%] p-8 bg-slate-800 z-20 text-white font-bold">
-                <div>{messages["calculator.order"][lang]}:</div>
-                <div className="flex items-center">
-                  <div className="mr-6">
-                    <div>{messages["calculator.total"][lang]}: {total} zł / {messages["calculator.month"][lang]}</div>
-                    {isRabat && <div>{messages["calculator.discount"][lang]}: {rabatPrice} zł / {messages["calculator.month"][lang]}</div>}
+        {true && (
+          <div className={`flex justify-between`}>
+            <div className="fixed flex justify-between items-center bottom-0 left-0 w-[100%] p-8 bg-slate-800 z-20 text-white font-bold">
+              <div>{messages["calculator.order"][lang]}:</div>
+              <div className="flex items-center">
+                <div className="mr-6">
+                  <div>
+                    {messages["calculator.total"][lang]}: {total} zł /{" "}
+                    {messages["calculator.month"][lang]}
                   </div>
-                  <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="mt-2 bg-[#009CFF] text-white rounded-[50px] px-[25px] py-[4px] text-lg font-bold"
-                  >
-                    {messages["calculator.summary"][lang]}
-                  </button>
+                  {isRabat && (
+                    <div>
+                      {messages["calculator.discount"][lang]}: {rabatPrice} zł /{" "}
+                      {messages["calculator.month"][lang]}
+                    </div>
+                  )}
                 </div>
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="mt-2 bg-[#009CFF] text-white rounded-[50px] px-[25px] py-[4px] text-lg font-bold"
+                >
+                  {messages["calculator.summary"][lang]}
+                </button>
               </div>
             </div>
-          )
-        }
+          </div>
+        )}
       </>
     );
   }

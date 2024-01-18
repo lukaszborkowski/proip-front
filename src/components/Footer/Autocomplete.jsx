@@ -16,7 +16,8 @@ export default function Autocomplete({
   onChange,
   resourceName = "voivodeships",
   isDisabled,
-  city = ''
+  city = "",
+  showBreadcrumbs,
 }) {
   const [query, setQuery] = useState("");
   const [options, setOptions] = useState([]);
@@ -30,13 +31,13 @@ export default function Autocomplete({
     )
       .then((res) => res.json())
       .then((res) => JSON.parse(res))
-      .then((data) =>
-        setOptions(data.results.map((r) => ({ ...r, id: r.pk })))
-      );
+      .then((data) => {
+        console.log(data.results.map((r) => ({ ...r, id: r.pk })));
+        setOptions(data.results.map((r) => ({ ...r, id: r.pk })));
+      });
   };
 
   useEffect(() => {
-    console.log("fetch");
     fetchResource();
   }, [query]);
 
@@ -97,11 +98,13 @@ export default function Autocomplete({
                         }`}
                       >
                         {person.name}
-                        <p>
-                          {person?.municipality?.county?.voivodeship?.name}{" "}
-                          {`->`} {person?.municipality?.county?.name} {`->`}{" "}
-                          {person?.municipality?.name}
-                        </p>
+                        {showBreadcrumbs && (
+                          <p>
+                            {person?.municipality?.county?.voivodeship?.name}{" "}
+                            {`->`} {person?.municipality?.county?.name} {`->`}{" "}
+                            {person?.municipality?.name}
+                          </p>
+                        )}
                       </span>
                       {selected ? (
                         <span

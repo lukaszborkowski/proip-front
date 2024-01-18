@@ -1,28 +1,29 @@
-
 import { cookies } from "next/headers";
 import React from "react";
-import { messages } from "../../lib/messages";
+import { messages, restructureLocalizationObject } from "../../lib/messages";
 import { Content } from "./Content";
 
 async function getData() {
   const nextCookies = cookies();
   const lang = nextCookies.get("lang")?.value || "pl";
+  let responses;
+  try {
+    responses = await Promise.all([
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/messages?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+    ]);
+  } catch (err) {}
 
-  // const responses = await Promise.all([
-  //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/navbar-elements?acf_format=standard`, {
-  //         cache: 'no-store',
-  //     }).then(res => res.json()),
-  //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/hero-items?acf_format=standard`, {
-  //         cache: 'no-store',
-  //     }).then(res => res.json())
+  const resMessages = responses?.[0]?.map((r) => r.acf)?.[0] || {};
 
-  // ])
-
-  // const navbarItems = (responses[0] || []).map(r => r.acf).reverse()
-  // const heroItems = (responses[1] || []).map(r => r.acf).reverse()
-
-  // return { lang, navbarItems, heroItems }
-  return { messages, lang };
+  return {
+    messages: { ...messages, ...restructureLocalizationObject(resMessages) },
+    lang,
+  };
 }
 
 export default async function Telefony() {
@@ -34,4 +35,3 @@ export default async function Telefony() {
     </>
   );
 }
-

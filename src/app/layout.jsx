@@ -7,7 +7,7 @@ import { Calculator } from "../components/Calculator";
 import Navbar from "../components/Navbar";
 
 import Footer from "../components/Footer";
-import { messages } from "../lib/messages";
+import { messages, restructureLocalizationObject } from "../lib/messages";
 
 const sourceSans = Source_Sans_3({ subsets: ["latin"] });
 
@@ -23,7 +23,7 @@ const navbarItems = [
     url: "/#internet",
   },
   {
-    "title-pl": "Telewizja",
+    "title-pl": "Teleewizja",
     "title-en": "TV",
     url: "/#telewizja",
   },
@@ -72,24 +72,41 @@ const heroItems = [
 async function getData() {
   const nextCookies = cookies();
   const lang = nextCookies.get("lang")?.value || "pl";
+  let responses;
+  try {
+    responses = await Promise.all([
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/navbar-elements?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/hero-items?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/messages?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+    ]);
+  } catch (err) {}
 
-  // const responses = await Promise.all([
-  //   fetch(
-  //     `${process.env.NEXT_PUBLIC_API_URL}/navbar-elements?acf_format=standard`,
-  //     {
-  //       cache: "no-store",
-  //     }
-  //   ).then((res) => res.json()),
-  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/hero-items?acf_format=standard`, {
-  //     cache: "no-store",
-  //   }).then((res) => res.json()),
-  // ]);
+  const resNavbarItems =
+    responses?.[0]?.map((r) => r.acf).reverse() || navbarItems;
+  const resHeroItems = responses?.[1]?.map((r) => r.acf).reverse() || heroItems;
+  const resMessages = responses?.[2]?.map((r) => r.acf)?.[0] || {};
 
-  // const navbarItems = (responses[0] || []).map((r) => r.acf).reverse();
-  // const heroItems = (responses[1] || []).map((r) => r.acf).reverse();
-
-  return { lang, navbarItems, heroItems, messages };
-  return { messages, lang };
+  return {
+    lang,
+    navbarItems: resNavbarItems,
+    heroItems: resHeroItems,
+    messages: { ...messages, ...restructureLocalizationObject(resMessages) },
+  };
 }
 
 const RootLayout = async ({ children }) => {

@@ -8,7 +8,7 @@ import PageTitle from "../../components/Typography/PageTitle";
 import SectionTitle from "../../components/Typography/SectionTitle";
 import { cookies } from "next/headers";
 import React from "react";
-import { messages } from "../../lib/messages";
+import { messages, restructureLocalizationObject } from "../../lib/messages";
 
 const clients = [
   {
@@ -52,27 +52,37 @@ const clients = [
 async function getData() {
   const nextCookies = cookies();
   const lang = nextCookies.get("lang")?.value || "pl";
+  let responses;
+  try {
+    responses = await Promise.all([
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/messages?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/kontakt?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+    ]);
+  } catch (err) {}
 
-  // const responses = await Promise.all([
-  //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/navbar-elements?acf_format=standard`, {
-  //         cache: 'no-store',
-  //     }).then(res => res.json()),
-  //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/hero-items?acf_format=standard`, {
-  //         cache: 'no-store',
-  //     }).then(res => res.json())
+  const resMessages = responses?.[0]?.map((r) => r.acf)?.[0] || {};
+  const resKontakt = responses?.[1]?.map((r) => r.acf).reverse() || clients
 
-  // ])
-
-  // const navbarItems = (responses[0] || []).map(r => r.acf).reverse()
-  // const heroItems = (responses[1] || []).map(r => r.acf).reverse()
-
-  // return { lang, navbarItems, heroItems }
-  return { messages, lang };
+  return {
+    messages: { ...messages, ...restructureLocalizationObject(resMessages) },
+    lang,
+    clients: resKontakt
+  };
 }
 
 export default async function Kontakt() {
   const content = await getData();
-  const { messages, lang } = content;
+  const { messages, lang, clients } = content;
 
   return (
     <div className="">

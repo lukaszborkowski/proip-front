@@ -72,7 +72,7 @@ export default function Form({ content = {} }) {
                 <label for="policy" className='pl-3 text-[17px] text-[#707070]'>{messages["contact.form.acceptPoliciesSecondary"][lang]} <span className='font-bold text-[#ED0E19] underline cursor-pointer'>{messages["contact.form.acceptPoliciesPrimary"][lang]}</span></label>
 
                 <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-[14px]">
-                    <Image src='/newCaptchaAnchor.png' width={260} height={70} alt='captcha' className='w-full max-w-[260px]' />
+                    {/* <Image src='/newCaptchaAnchor.png' width={260} height={70} alt='captcha' className='w-full max-w-[260px]' /> */}
 
                     <ChooseButton type="submit" onClick={submitHandler} className={"rounded-[7px]"} isActive={true}>{messages["contact.form.sendButton"][lang]}</ChooseButton>
                 </div>

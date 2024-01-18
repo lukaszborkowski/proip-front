@@ -7,6 +7,7 @@ import Autocomplete from "./Autocomplete";
 export default function AvailabilityForm({ content = {}, onSubmit }) {
   const { messages, lang } = content;
   const [values, setValues] = useState({});
+  const [isAvailable, setIsAvailable] = useState();
 
   return (
     // <form className="w-full">
@@ -26,6 +27,7 @@ export default function AvailabilityForm({ content = {}, onSubmit }) {
             setValues((prev) => ({ ...prev, city: val }));
           }}
           resourceName="cities"
+          showBreadcrumbs={true}
         />
       </div>
 
@@ -53,11 +55,19 @@ export default function AvailabilityForm({ content = {}, onSubmit }) {
         </div>
       </div>
 
+      {isAvailable && (
+        <div className="text-center text-[20px] text-[#039514] font-bold">
+          {messages["footer.availability.checkAvailabilitySuccess"][lang]}
+        </div>
+      )}
+
       <ChooseButton
         className={"w-full px-0 mt-[20px]"}
         isActive={true}
+        disabled={!(values.city && values.street)}
         onClick={() => {
-          onSubmit(values);
+          // onSubmit(values);
+          setIsAvailable(true);
         }}
       >
         {messages["footer.availability.checkAvailabilityButton"][lang]}

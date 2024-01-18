@@ -4,21 +4,39 @@ import Container from "../../components/Container";
 import PageTitle from "../../components/Typography/PageTitle";
 import React from "react";
 import { cookies } from "next/headers";
-import { messages } from "../../lib/messages";
+import { messages, restructureLocalizationObject } from "../../lib/messages";
 
 async function getData() {
   const nextCookies = cookies();
   const lang = nextCookies.get("lang")?.value || "pl";
 
-  // const responses = await Promise.all([
-  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/questions?acf_format=standard`, {
-  //     cache: "no-store",
-  //   }).then((res) => res.json()),
-  // ]);
+  let responses;
+  try {
+    responses = await Promise.all([
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/questions?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/messages?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+    ]);
+  } catch (err) {}
 
-  // const questions = (responses[0] || []).map((r) => r.acf).reverse();
+  const resMessages = responses?.[1]?.map((r) => r.acf)?.[0] || {};
 
-  return { messages, lang, questions };
+  const resQuestions = responses?.[0]?.map((r) => r.acf).reverse() || questions;
+
+  return {
+    messages: { ...messages, ...restructureLocalizationObject(resMessages) },
+    lang,
+    questions: resQuestions,
+  };
 }
 
 export default async function Pytania() {

@@ -4,48 +4,70 @@ import Channels from "../components/Home/Channels";
 import Internet from "../components/Home/Internet";
 import Opinions from "../components/Home/Opinions";
 import Television from "../components/Home/Television";
-import { messages } from "../lib/messages";
+import { messages, restructureLocalizationObject } from "../lib/messages";
 import { cookies } from "next/headers";
 
 async function getData() {
   const nextCookies = cookies();
   const lang = nextCookies.get("lang")?.value || "pl";
+  let responses;
+  try {
+    responses = await Promise.all([
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/hero-items?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/pakiet-internet?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/pakiet-tv?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/more-tv?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/opinions?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/index.php/wp-json/wp/v2/messages?acf_format=standard`,
+        {
+          cache: "no-store",
+        }
+      ).then((res) => res.json()),
+    ]);
+  } catch (err) {}
 
-  // const responses = await Promise.all([
-  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/hero-items?acf_format=standard`, {
-  //     cache: "no-store",
-  //   }).then((res) => res.json()),
-  //   fetch(
-  //     `${process.env.NEXT_PUBLIC_API_URL}/pakiet-internet?acf_format=standard`,
-  //     {
-  //       cache: "no-store",
-  //     }
-  //   ).then((res) => res.json()),
-  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/pakiet-tv?acf_format=standard`, {
-  //     cache: "no-store",
-  //   }).then((res) => res.json()),
-  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/more-tv?acf_format=standard`, {
-  //     cache: "no-store",
-  //   }).then((res) => res.json()),
-  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/opinions?acf_format=standard`, {
-  //     cache: "no-store",
-  //   }).then((res) => res.json()),
-  // ]);
-
-  // const heroItems = (responses[0] || []).map((r) => r.acf).reverse();
-  // const internetItems = (responses[1] || []).map((r) => r.acf).reverse();
-  // const tvItems = (responses[2] || []).map((r) => r.acf).reverse();
-  // const moreTv = (responses[3] || []).map((r) => r.acf).reverse();
-  // const opinions = (responses[4] || []).map((r) => r.acf).reverse();
+  const resHeroItems = responses?.[0]?.map((r) => r.acf).reverse() || heroItems;
+  const resInternetItems =
+    responses?.[1]?.map((r) => r.acf).reverse() || internetItems;
+  const resTvItems = responses?.[2]?.map((r) => r.acf).reverse() || tvItems;
+  const resMoreTv = responses?.[3]?.map((r) => r.acf).reverse() || moreTv;
+  const resOpinions = responses?.[4]?.map((r) => r.acf).reverse() || opinions;
+  const resMessages = responses?.[5]?.map((r) => r.acf)?.[0] || {};
 
   return {
     lang,
-    heroItems,
-    internetItems,
-    tvItems,
-    moreTv,
-    opinions,
-    messages,
+    heroItems: resHeroItems,
+    internetItems: resInternetItems,
+    tvItems: resTvItems,
+    moreTv: resMoreTv,
+    opinions: resOpinions,
+    messages: { ...messages, ...restructureLocalizationObject(resMessages) },
   };
 }
 

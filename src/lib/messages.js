@@ -1,3 +1,28 @@
+export function restructureLocalizationObject(obj) {
+    const result = {};
+
+    try {
+        for (const key in obj) {
+            // Usunięcie sufiksu lokalizacji i oddzielenie pozostałej części klucza
+            const baseKey = key.replace(/\.\w+$/, '');
+            const locale = key.split('.').pop();
+
+            // Inicjalizacja obiektu dla klucza bazowego, jeśli jeszcze nie istnieje
+            if (!result[baseKey]) {
+                result[baseKey] = {};
+            }
+
+            // Dodanie lokalizacji do odpowiedniego klucza bazowego
+            result[baseKey][locale] = obj[key];
+        }
+    } catch (err) {
+        return {}
+    }
+
+
+    return result;
+}
+
 export const messages = {
     "navbar.contactNumberPrefix": {
         "pl": "+48 ",
@@ -146,6 +171,10 @@ export const messages = {
     "footer.availability.checkAvailabilityButton": {
         "pl": "SPRAWDZAM DOSTĘPNOŚĆ",
         "en": "CHECK AVAILABILITY"
+    },
+    "footer.availability.checkAvailabilitySuccess": {
+        "pl": "Obszar dostępny",
+        "en": "Accessible area"
     },
     "footer.availability.subText": {
         "pl": "Nasze usługi są dla Ciebie dostępne!",
